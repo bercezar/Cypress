@@ -1,0 +1,26 @@
+{
+  "signup": {
+    "name": "teste"
+  },
+  "accountInfo": {
+    "title": "Mr",
+    "password": "SenhaSecreta123!",
+    "dateOfBirth": {
+      "day": "15",
+      "month": "May",
+      "year": "1990"
+    }
+  },
+  "addressInfo": {
+    "firstName": "Teste",
+    "lastName": "Cypress",
+    "company": "Empresa Teste QA",
+    "address1": "Rua dos Testes, 123",
+    "address2": "Complemento Teste",
+    "country": "India",
+    "state": "Estado Teste",
+    "city": "Cidade Teste",
+    "zipcode": "12345-678",
+    "mobileNumber": "99999999999"
+  }
+}
