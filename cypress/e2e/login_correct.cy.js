@@ -2,13 +2,14 @@ describe("Login_correct", () => {
   beforeEach(() => {
     // cypress/support/commands.js
     cy.createUserDynamic();
+    cy.contains(" Logout").click();
   });
   it("Login User with correct email and password", function () {
     // ARRANGE
     cy.visit("http://automationexercise.com");
-    cy.get(".logo.pull-left").should("be.visible");
 
     // ACT
+    cy.get(".logo.pull-left").should("be.visible");
     cy.contains(" Signup / Login").click();
     cy.contains("Login to your account").should("be.visible");
 

@@ -28,7 +28,10 @@ Cypress.Commands.add("createUserDynamic", () => {
   cy.fixture("register_user").then((data) => {
     const emailDynamic = "teste_" + Date.now() + "@testmail.com";
 
-    cy.visit("https://automationexercise.com/login");
+    cy.visit("https://automationexercise.com");
+    cy.get(".logo.pull-left").should("be.visible");
+
+    cy.contains(" Signup / Login").click();
     cy.get('[data-qa="signup-name"]').type(data.signup.name);
     cy.get('[data-qa="signup-email"]').type(emailDynamic);
     cy.get('[data-qa="signup-button"]').click();
@@ -62,6 +65,5 @@ Cypress.Commands.add("createUserDynamic", () => {
     cy.wrap(emailDynamic).as("emailRegistered");
 
     cy.get('[data-qa="continue-button"]').click();
-    cy.contains(" Logout").click();
   });
 });

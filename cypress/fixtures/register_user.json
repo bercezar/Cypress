@@ -22,5 +22,12 @@
     "city": "Cidade Teste",
     "zipcode": "12345-678",
     "mobileNumber": "99999999999"
+  },
+  "paymentInfo": {
+    "nameOnCard": "Teste Cypress",
+    "cardNumber": "4111222233334444",
+    "cvc": "123",
+    "expirationMonth": "12",
+    "expirationYear": "2030"
   }
 }
