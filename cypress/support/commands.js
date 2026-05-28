@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("createUserDynamic", () => {
-  cy.fixture("register_user").then((data) => {
+  cy.fixture("standard-user-profile").then((data) => {
     const emailDynamic = "teste_" + Date.now() + "@testmail.com";
 
     cy.visit("https://automationexercise.com");

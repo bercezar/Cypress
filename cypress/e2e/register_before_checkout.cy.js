@@ -22,7 +22,9 @@ describe("register_before_checkout", () => {
         cy.contains("Continue Shopping").should("be.visible").click();
       });
 
-      cy.contains(" Cart").click();
+      cy.get(".navbar-nav").within(() => {
+        cy.contains(" Cart").should("be.visible").click();
+      });
 
       cy.contains("Shopping Cart").should("be.visible");
       cy.contains("Proceed To Checkout").should("be.visible").click();

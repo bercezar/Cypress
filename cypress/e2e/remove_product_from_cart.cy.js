@@ -3,12 +3,16 @@ describe("remove_product_from_cart", () => {
     cy.createUserDynamic();
   });
   it("Remove Products From Cart", () => {
+    // ACT
     const targetIds = ["1", "4"];
     targetIds.forEach((id) => {
       cy.get(`[data-product-id="${id}"]`).first().click({ force: true });
       cy.contains("Continue Shopping").should("be.visible").click();
     });
-    cy.contains(" Cart").click();
+
+    cy.get(".navbar-nav").within(() => {
+      cy.contains(" Cart").should("be.visible").click();
+    });
 
     cy.contains("Shopping Cart").should("be.visible");
 
