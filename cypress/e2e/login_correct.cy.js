@@ -13,7 +13,7 @@ describe("Login_correct", () => {
     cy.contains(" Signup / Login").click();
     cy.contains("Login to your account").should("be.visible");
 
-    cy.fixture("register_user").then((data) => {
+    cy.fixture("standard-user-profile").then((data) => {
       cy.get('[data-qa="login-email"]').type(this.emailRegistered);
       cy.get('[data-qa="login-password').type(data.accountInfo.password);
       cy.get('[data-qa="login-button"]').click();
@@ -23,10 +23,9 @@ describe("Login_correct", () => {
 
     cy.contains(" Delete Account").click();
 
+    // ASSERT
     cy.contains("Account Deleted!").should("be.visible");
     cy.get('[data-qa="continue-button"]').click();
-
-    // ASSERT
     cy.url().should("eq", "https://automationexercise.com/");
   });
 });

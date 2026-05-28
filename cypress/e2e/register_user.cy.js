@@ -7,7 +7,7 @@ describe("register_user", () => {
     cy.contains(" Signup / Login").click();
     cy.contains("New User Signup!").should("be.visible");
 
-    cy.fixture("register_user").then((data) => {
+    cy.fixture("standard-user-profile").then((data) => {
       const emailTrash = "teste_" + Date.now() + "@testmail.com";
       cy.get('[data-qa="signup-name"]').type(data.signup.name);
       cy.get('[data-qa="signup-email"]').type(emailTrash);
@@ -47,10 +47,10 @@ describe("register_user", () => {
 
     cy.contains(" Delete Account").click();
 
+    // ASSERT
     cy.contains("Account Deleted!").should("be.visible");
     cy.get('[data-qa="continue-button"]').click();
 
-    // ASSERT
     cy.url().should("eq", "https://automationexercise.com/");
   });
 });

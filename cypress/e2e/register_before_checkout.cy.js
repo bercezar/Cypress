@@ -4,7 +4,7 @@ describe("register_before_checkout", () => {
   });
   it("Register before Checkout", () => {
     // ACT
-    cy.fixture("register_user").then((data) => {
+    cy.fixture("standard-user-profile").then((data) => {
       cy.contains(" Logged in as " + data.signup.name).should("be.visible");
 
       // Relaciona o nome do produto junto ao id, todos estão dentro da mesma div pai
@@ -78,10 +78,9 @@ describe("register_before_checkout", () => {
 
     cy.contains(" Delete Account").click();
 
+    // ASSERT
     cy.contains("Account Deleted!").should("be.visible");
     cy.get('[data-qa="continue-button"]').click();
-
-    // ASSERT
     cy.url().should("eq", "https://automationexercise.com/");
   });
 });
