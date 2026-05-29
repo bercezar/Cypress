@@ -8,15 +8,18 @@ describe("register_user", () => {
     cy.contains("New User Signup!").should("be.visible");
 
     cy.fixture("standard-user-profile").then((data) => {
+      // Acesso dos dados JSON
       const emailTrash = "teste_" + Date.now() + "@testmail.com";
       cy.get('[data-qa="signup-name"]').type(data.signup.name);
       cy.get('[data-qa="signup-email"]').type(emailTrash);
 
-      cy.get('[data-qa="signup-button"]').click();
+      cy.get('[data-qa="signup-button"]').click(); // Click no botão de cadastrar
 
-      // Account Information
       cy.contains("Enter Account Information").should("be.visible");
 
+      /////////////// Preenchimento dos campos de cadastro  ///////////////
+
+      // Account Information
       cy.get("#id_gender1").check(data.accountInfo.title);
       cy.get('[data-qa="password"]').type(data.accountInfo.password);
       cy.get('[data-qa="days"]').select(data.accountInfo.dateOfBirth.day);
@@ -36,6 +39,8 @@ describe("register_user", () => {
       cy.get('[data-qa="city"]').type(data.addressInfo.city);
       cy.get('[data-qa="zipcode"]').type(data.addressInfo.zipcode);
       cy.get('[data-qa="mobile_number"]').type(data.addressInfo.mobileNumber);
+
+      /////////////////////////////////////////////////////////////////////
 
       cy.get('[data-qa="create-account"]').click();
 

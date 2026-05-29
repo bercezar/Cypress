@@ -1,6 +1,6 @@
 describe("search-and-verify-cart-after-login", () => {
   beforeEach(() => {
-    cy.createUserDynamic();
+    cy.createUserDynamic(); // Criação do email dinâmico
     cy.contains(" Logout").click();
   });
   it("Search Products and Verify Cart After Login", function () {

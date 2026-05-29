@@ -1,29 +1,31 @@
 describe("register_before_checkout", () => {
   beforeEach(() => {
-    cy.createUserDynamic();
+    cy.createUserDynamic(); // Criação do email dinâmico
   });
   it("Register before Checkout", () => {
     // ACT
     cy.fixture("standard-user-profile").then((data) => {
+      // Acesso dos dados JSON
+
       cy.contains(" Logged in as " + data.signup.name).should("be.visible");
 
-      // Relaciona o nome do produto junto ao id, todos estão dentro da mesma div pai
+      // Relaciona o nome e valor junto ao id que se encontra o produto
       const targetIds = ["1", "3"];
       targetIds.forEach((id) => {
         cy.get(`.productinfo [data-product-id="${id}"]`)
           .parent()
           .then(($container) => {
-            const productName = $container.find("p").first().text().trim();
-            const valueProduct = $container.find("h2").first().text().trim();
+            const productName = $container.find("p").first().text().trim(); // Nome
+            const valueProduct = $container.find("h2").first().text().trim(); // Valor
             cy.wrap(productName).as(`productName_add_cart${id}`);
             cy.wrap(valueProduct).as(`value${id}`);
-            cy.get(`[data-product-id="${id}"]`).first().click({ force: true });
+            cy.get(`[data-product-id="${id}"]`).first().click({ force: true }); // Adiciona ao carrinho
           });
         cy.contains("Continue Shopping").should("be.visible").click();
       });
 
       cy.get(".navbar-nav").within(() => {
-        cy.contains(" Cart").should("be.visible").click();
+        cy.contains(" Cart").should("be.visible").click(); // Direciona ao carrinho
       });
 
       cy.contains("Shopping Cart").should("be.visible");
@@ -47,6 +49,7 @@ describe("register_before_checkout", () => {
         });
       });
 
+      // Confere os dados do pedido aos dados referentes ao cadastrado (arquivo json)
       cy.get("#address_delivery")
         .should(
           "contain",
@@ -61,10 +64,11 @@ describe("register_before_checkout", () => {
         .and("contain", data.addressInfo.country)
         .and("contain", data.addressInfo.mobileNumber);
 
-      cy.get("#ordermsg textarea").type("TESTE");
+      cy.get("#ordermsg textarea").type("TESTE"); // Preenche no campo Descrição
 
       cy.contains("Place Order").click();
 
+      // Informa os dados do cartão para confirmar comprar (arquivo json)
       cy.contains("Payment").should("be.visible");
 
       cy.get('[data-qa="name-on-card"]').type(data.paymentInfo.nameOnCard);
@@ -78,9 +82,8 @@ describe("register_before_checkout", () => {
 
     cy.get('[data-qa="order-placed"]').should("be.visible");
 
-    cy.contains(" Delete Account").click();
-
     // ASSERT
+    cy.contains(" Delete Account").click();
     cy.contains("Account Deleted!").should("be.visible");
     cy.get('[data-qa="continue-button"]').click();
     cy.url().should("eq", "https://automationexercise.com/");
