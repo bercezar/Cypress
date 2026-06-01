@@ -51,14 +51,4 @@ Também foi implementada uma rotina de limpeza da pasta de downloads antes da ex
 
 ---
 
-## ⚙️ Como Executar o Projeto
-
-### Pré-requisitos
-
-Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
-
-### Instalação
-
-```bash
-npm install
-```
+Dev | QA : Bernardo Cezar Alves de Oliveira
