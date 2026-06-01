@@ -1,7 +1,7 @@
 describe("download-invoice-after-purchase-order", () => {
   beforeEach(() => {
-    // Liga para o servidor e manda ele rodar o código lá do outro lado
-    cy.task("ClearDownloads");
+    // Criação da pasta de downloads e, caso ela já exista antes de rodar o teste, será apagada.
+    cy.task("ClearDownloads"); // cypress.config.js
   });
   it("Download Invoice after purchase order", () => {
     // ARRANGE
