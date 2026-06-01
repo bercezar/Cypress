@@ -1,4 +1,4 @@
-describe("search-and-verify-cart-after-login", () => {
+describe("search-products-and-verify-cart-after-login", () => {
   beforeEach(() => {
     cy.createUserDynamic(); // Criação do email dinâmico
     cy.contains(" Logout").click();
