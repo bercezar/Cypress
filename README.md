@@ -8,8 +8,6 @@ O projeto foi criado com o objetivo de praticar a automação de fluxos de negó
 
 ## 📋 Casos de Teste Implementados
 
-A suíte contempla os seguintes cenários:
-
 - **Test Case 1:** [Register User](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/register_user.cy.js)
 - **Test Case 2:** [Login User with correct email and password](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/login_correct.cy.js)
 - **Test Case 3:** [Login User with incorrect email and password](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/login_incorrect.cy.js)
