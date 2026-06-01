@@ -29,9 +29,16 @@ Cypress.Commands.add("createUserDynamic", () => {
     const emailDynamic = "teste_" + Date.now() + "@testmail.com";
 
     cy.visit("https://automationexercise.com");
-    cy.get(".logo.pull-left").should("be.visible");
+    cy.contains("#slider-carousel h2", "Full-Fledged practice website").should(
+      "be.visible",
+    ); // Valida o carregamento da Home Page checando o carrosel exclusivo
 
     cy.contains(" Signup / Login").click();
+
+    // Página de login
+    cy.url().should("include", "/login");
+    cy.contains("Login to your account").should("be.visible");
+
     cy.get('[data-qa="signup-name"]').type(data.signup.name);
     cy.get('[data-qa="signup-email"]').type(emailDynamic);
     cy.get('[data-qa="signup-button"]').click();

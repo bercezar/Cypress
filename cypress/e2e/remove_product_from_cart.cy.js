@@ -1,13 +1,18 @@
 describe("remove_product_from_cart", () => {
-  beforeEach(() => {
-    cy.createUserDynamic(); // Criação do email dinâmico
-  });
   it("Remove Products From Cart", () => {
+    // ARRANGE
+
+    cy.visit("https://automationexercise.com");
+
     // ACT
+    cy.contains("#slider-carousel h2", "Full-Fledged practice website").should(
+      "be.visible",
+    ); // Valida o carregamento da Home Page checando o carrosel exclusivo
+
     const targetIds = ["1", "4"];
     targetIds.forEach((id) => {
-      cy.get(`[data-product-id="${id}"]`).first().click({ force: true });
-      cy.contains("Continue Shopping").should("be.visible").click();
+      cy.get(`[data-product-id="${id}"]`).first().click({ force: true }); // Adiciona produto ao carrinho
+      cy.contains("Continue Shopping").should("be.visible").click(); // Confirma se deseja continuar comprando
     });
 
     cy.get(".navbar-nav").within(() => {
@@ -28,11 +33,5 @@ describe("remove_product_from_cart", () => {
     cy.get("#empty_cart").within(() => {
       cy.get(".text-center b").should("have.text", "Cart is empty!");
     });
-
-    // CLEANUP
-    cy.contains(" Delete Account").click();
-
-    cy.contains("Account Deleted!").should("be.visible");
-    cy.get('[data-qa="continue-button"]').click();
   });
 });

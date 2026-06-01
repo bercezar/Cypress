@@ -1,13 +1,32 @@
 describe("register_before_checkout", () => {
   beforeEach(() => {
     cy.createUserDynamic(); // Criação do email dinâmico
+    cy.contains(" Logout").click();
   });
   it("Register before Checkout", () => {
+    // ARRANGE
+    cy.visit("https://automationexercise.com");
+
     // ACT
+    cy.contains("#slider-carousel h2", "Full-Fledged practice website").should(
+      "be.visible",
+    ); // Valida o carregamento da Home Page checando o carrosel exclusivo
+
+    cy.contains(" Signup / Login").click();
+
+    // Página de login
+    cy.url().should("include", "/login");
+    cy.contains("Login to your account").should("be.visible");
+
     cy.fixture("standard-user-profile").then((data) => {
       // Acesso dos dados JSON
 
-      cy.contains(" Logged in as " + data.signup.name).should("be.visible");
+      // Realiza o LOGIN
+      cy.get('[data-qa="login-email"]').type(this.emailRegistered);
+      cy.get('[data-qa="login-password').type(data.accountInfo.password);
+      cy.get('[data-qa="login-button"]').click();
+
+      cy.contains(" Logged in as " + data.signup.name).should("be.visible"); // Verifica usário logado
 
       // Relaciona o nome e valor junto ao id que se encontra o produto
       const targetIds = ["1", "3"];
@@ -28,8 +47,11 @@ describe("register_before_checkout", () => {
         cy.contains(" Cart").should("be.visible").click(); // Direciona ao carrinho
       });
 
+      // Página do carrinho
+      cy.url().should("include", "/view_cart");
       cy.contains("Shopping Cart").should("be.visible");
-      cy.contains("Proceed To Checkout").should("be.visible").click();
+
+      cy.contains("Proceed To Checkout").should("be.visible").click(); // Prossegue para confirmação
 
       cy.contains("Address Details").should("be.visible");
 
@@ -78,11 +100,21 @@ describe("register_before_checkout", () => {
       cy.get('[data-qa="expiry-year"]').type(data.paymentInfo.expirationYear);
     });
 
-    cy.get('[data-qa="pay-button"]').click();
+    cy.get('[data-qa="pay-button"]').click(); // Confirma compra
 
-    cy.get('[data-qa="order-placed"]').should("be.visible");
+    // cy.get("success_message")
+    //   .should("be.visible")
+    //   .and("have.text", "Your order has been placed successfully!"); // Compra Sucedida
+
+    // IGNORADO: Ocorre uma Race Condition após o clique.
+    // O redirecionamento da página destrói o DOM antes do Cypress conseguir capturar o alerta.
+    // A garantia da compra é validada pelo estado final na tela seguinte (Order Placed).
 
     // ASSERT
+
+    cy.get('[data-qa="order-placed"]')
+      .should("be.visible")
+      .and("contain.text", "Order Placed!"); // Confirmação da compra
     cy.contains(" Delete Account").click();
     cy.contains("Account Deleted!").should("be.visible");
     cy.get('[data-qa="continue-button"]').click();

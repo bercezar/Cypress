@@ -5,13 +5,20 @@ describe("Login_correct", () => {
     cy.contains(" Logout").click();
   });
   // Para ter o usuário cadastrado e verificar o login correto, é necessário ter uma criação de conta anterior e o logout para fazer o login com os dados recém criados
+
   it("Login User with correct email and password", function () {
     // ARRANGE
     cy.visit("http://automationexercise.com");
 
     // ACT
-    cy.get(".logo.pull-left").should("be.visible");
+    cy.contains("#slider-carousel h2", "Full-Fledged practice website").should(
+      "be.visible",
+    ); // Valida o carregamento da Home Page checando o carrosel exclusivo
+
     cy.contains(" Signup / Login").click();
+
+    // Página de login
+    cy.url().should("include", "/login");
     cy.contains("Login to your account").should("be.visible");
 
     cy.fixture("standard-user-profile").then((data) => {

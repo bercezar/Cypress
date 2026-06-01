@@ -4,9 +4,15 @@ describe("register_user", () => {
     cy.visit("https://automationexercise.com");
 
     // ACT
+    cy.contains("#slider-carousel h2", "Full-Fledged practice website").should(
+      "be.visible",
+    ); // Valida o carregamento da Home Page checando o carrosel exclusivo
+
     cy.contains(" Signup / Login").click();
+    cy.url().should("include", "/login");
     cy.contains("New User Signup!").should("be.visible");
 
+    cy.contains("Login to your account").should("be.visible");
     cy.fixture("standard-user-profile").then((data) => {
       // Acesso dos dados JSON
       const emailTrash = "teste_" + Date.now() + "@testmail.com";
@@ -47,7 +53,7 @@ describe("register_user", () => {
       cy.contains("Account Created!").should("be.visible");
 
       cy.get('[data-qa="continue-button"]').click();
-      cy.contains("Logged in as " + data.signup.name).should("be.visible");
+      cy.contains(" Logged in as " + data.signup.name).should("be.visible"); // Confirmação do usuário logado
     });
 
     cy.contains(" Delete Account").click();
