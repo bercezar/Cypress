@@ -10,16 +10,16 @@ O projeto foi criado com o objetivo de praticar a automação de fluxos de negó
 
 A suíte contempla os seguintes cenários:
 
-- **Test Case 1:** Register User
-- **Test Case 2:** Login User with correct email and password
-- **Test Case 3:** Login User with incorrect email and password
-- **Test Case 8:** Verify All Products and product detail page
-- **Test Case 15:** Place Order: Register before Checkout
-- **Test Case 17:** Remove Products From Cart
-- **Test Case 18:** View Category Products
-- **Test Case 19:** View & Cart Brand Products
-- **Test Case 20:** Search Products and Verify Cart After Login
-- **Test Case 24:** Download Invoice after purchase order
+- **Test Case 1:** [Register User](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/register_user.cy.js)
+- **Test Case 2:** [Login User with correct email and password](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/login_correct.cy.js)
+- **Test Case 3:** [Login User with incorrect email and password](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/login_incorrect.cy.js)
+- **Test Case 8:** [Verify All Products and product detail page](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/verify-all-products-and-product-detail-page.cy.js)
+- **Test Case 15:** [Place Order: Register before Checkout](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/register_before_checkout.cy.js)
+- **Test Case 17:** [Remove Products From Cart](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/remove_product_from_cart.cy.js)
+- **Test Case 18:** [View Category Products](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/view-category-products.cy.js)
+- **Test Case 19:** [View & Cart Brand Products](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/view-and-cart-brand-products.cy.js)
+- **Test Case 20:** [Search Products and Verify Cart After Login](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/search_and_verify_cart_after-login.cy.js)
+- **Test Case 24:** [Download Invoice after purchase order](https://github.com/bercezar/Cypress/blob/main/cypress/e2e/download-invoice-after-purchase-order.cy.js)
 
 ---
 
